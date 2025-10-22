@@ -39,29 +39,71 @@ console.log(p);
 
 // 7. Напиши функцию sizeOf: принимает string | number → возвращает number (длина строки или само число)
 function sizeOf(s: string | number): number {
-    if (typeof s === "string"){
+    if (typeof s === "string") {
         return s.length;
     } else {
         return s;
     }
 }
+
 console.log(sizeOf('hah'));
 console.log(sizeOf(32));
 // 8. Опиши тип User: id — number, name — string, nickname — опционально (string)
+type User = {
+    id: number,
+    name: string,
+    nickname?: string // answer
+};
+
+let u1 = {
+    id: 1,
+    name: "Igor",
+    nickname: 'terminator'
+}
+let u2 = {
+    id: 2,
+    name: "Igor",
+}
+
 
 // 9. Функция hello: принимает User → возвращает "Hi, Ann (@ann)" или "Hi, Ann" (если нет nickname). Реализуй ее
 
-// 10. Типизируй стрелочную функцию lower: принимает string → возвращает string
+function hello(u: User) {
+    if (u.nickname !== undefined) {
+        console.log(`Hi, ${u.name} (@${u.nickname})`);
+    } else {
+        console.log(`Hi, ${u.name}`);
+    }
+}
 
+hello(u1);
+hello(u2);
+
+
+// 10. Типизируй стрелочную функцию lower: принимает string → возвращает string
+let lower = (s: string): string => {
+    return s;
+}
 // 11. Опиши тип функции Calc: принимает 2 аргумента number (a, b), возвращает number
+type Calc = (a: number, b: number) => number;
 
 // 12. Реализуй 2 функции: add (складывает 2 числа) и mul (перемножает) с типом Calc
+const add: Calc = (a,b) => a + b;
+const mul: Calc = (a,b) => a * b;
 
 // 13. Напиши функцию log: принимает message (строка), ничего не возвращает (void). Просто логирует message в консоль
+function log(message: string): void{
+    console.log(message);
+}
 
 // 14. Напиши и типизируй функцию firstEven: принимает массив чисел
 // и возвращает первое четное число или undefined (если в массиве нет четных)
+function firstEven(nums: number[]): number | undefined {
+    return nums.find((n) => n%2 === 0);
+}
 
+console.log(firstEven([1, 2, 3, 4]));
+console.log(firstEven([1, 3, 5]));
 // 15. Опиши тип Profile2 (id число, name: строка, age опциональное поле число);
 // напиши функцию ageLabel(p:Profile2):string (с проверкой undefined)
 
