@@ -21,11 +21,32 @@ let idString: ID = "String";
 let nums: number[];
 let names: string[];
 // 5. Создай объект product и задай тип «на месте»: product имеет id (число), name (строка), price (число)
+let product: { id: number, name: string, price: number; } = {id: 1, name: "Igor", price: 32323};
+console.log(product)
 
 // 6. Дай имя типу Person, у которого id число, name строка и создай переменную p этого типа
+type Person = {
+    id: number,
+    name: string,
+}
+
+let p: Person = {
+    id: 1,
+    name: 'Igor'
+}
+
+console.log(p);
 
 // 7. Напиши функцию sizeOf: принимает string | number → возвращает number (длина строки или само число)
-
+function sizeOf(s: string | number): number {
+    if (typeof s === "string"){
+        return s.length;
+    } else {
+        return s;
+    }
+}
+console.log(sizeOf('hah'));
+console.log(sizeOf(32));
 // 8. Опиши тип User: id — number, name — string, nickname — опционально (string)
 
 // 9. Функция hello: принимает User → возвращает "Hi, Ann (@ann)" или "Hi, Ann" (если нет nickname). Реализуй ее
