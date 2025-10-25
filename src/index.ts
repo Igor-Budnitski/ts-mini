@@ -18,8 +18,8 @@ let idNumber: ID = 21;
 let idString: ID = "String";
 
 // 4. Создай переменные nums (массив чисел) и names (массив строк). Явно их типизируй
-let nums: number[];
-let names: string[];
+let nums: number[] = [1, 2, 3, 4];
+let names: string[] = ['Vasja', 'John'];
 // 5. Создай объект product и задай тип «на месте»: product имеет id (число), name (строка), price (число)
 let product: { id: number, name: string, price: number; } = {id: 1, name: "Igor", price: 32323};
 console.log(product)
@@ -88,24 +88,42 @@ let lower = (s: string): string => {
 type Calc = (a: number, b: number) => number;
 
 // 12. Реализуй 2 функции: add (складывает 2 числа) и mul (перемножает) с типом Calc
-const add: Calc = (a,b) => a + b;
-const mul: Calc = (a,b) => a * b;
+const add: Calc = (a, b) => a + b;
+const mul: Calc = (a, b) => a * b;
 
 // 13. Напиши функцию log: принимает message (строка), ничего не возвращает (void). Просто логирует message в консоль
-function log(message: string): void{
+function log(message: string): void {
     console.log(message);
 }
 
 // 14. Напиши и типизируй функцию firstEven: принимает массив чисел
 // и возвращает первое четное число или undefined (если в массиве нет четных)
 function firstEven(nums: number[]): number | undefined {
-    return nums.find((n) => n%2 === 0);
+    return nums.find((n) => n % 2 === 0);
 }
 
 console.log(firstEven([1, 2, 3, 4]));
 console.log(firstEven([1, 3, 5]));
 // 15. Опиши тип Profile2 (id число, name: строка, age опциональное поле число);
 // напиши функцию ageLabel(p:Profile2):string (с проверкой undefined)
+
+type Profile2 = {
+    id: number,
+    name: string,
+    age?: number
+}
+
+function ageLabel(p: Profile2): string {
+    return p.age !== undefined ? p.age.toString() : "undefined";
+}
+
+let p2 = {
+    id: 1,
+    name: 'Igor',
+    age: 32,
+}
+
+console.log(ageLabel(p2));
 
 // 16. Напиши и типизируй функцию createPagination. Принимает 3 аргумента page число, pageSize число
 // sortBy строка со значением по умолчанию 'createdAt'.
@@ -114,5 +132,26 @@ console.log(firstEven([1, 3, 5]));
 //   pageSize: number,
 //   sortBy: string }
 
+function createPagination(page: number, pageSize: number, sortBy: string = 'createdAt'): {
+    page: number,
+    pageSize: number,
+    sortBy: string
+} {
+    return {
+        page,
+        pageSize,
+        sortBy
+    }
+}
+
 // 17. Создай литеральный тип Result и функцию isOk которая принимает Result
 // и возвращает boolean (true если "ok" и false если "fail")
+
+type Result = "ok" | "fail";
+
+function isOk(r: Result): boolean {
+    return r === "ok";
+}
+
+console.log(isOk("fail"));
+console.log(isOk("ok"));
